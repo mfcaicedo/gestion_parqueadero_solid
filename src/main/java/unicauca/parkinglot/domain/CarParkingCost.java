@@ -38,8 +38,6 @@ public class CarParkingCost implements IParkingCost {
                if(totalMinutos < 60){
                    valorCobro = 2000;
                    //luego seguimos desde aquí 
-                   totalMinutos = 0; 
-                   System.out.println("hola este es un nuevo cambio en el github");
                }
             }
         }
