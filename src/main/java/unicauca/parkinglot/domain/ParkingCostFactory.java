@@ -7,7 +7,7 @@ package unicauca.parkinglot.domain;
 
 /**
  *
- * @author HP
+ * @author Milthon F Caicedo, Brandon Nicolas 
  */
 public class ParkingCostFactory {
     

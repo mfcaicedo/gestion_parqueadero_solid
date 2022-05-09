@@ -7,6 +7,7 @@ package unicauca.parkinglot.presentation;
 
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.time.temporal.ChronoUnit;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,13 +25,56 @@ public class ClientMain {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        LocalDateTime input = LocalDateTime.of(2021, Month.FEBRUARY, 22, 17, 0);   
+        /**
+         * Pruebas
+         * 
+         */
         
-        LocalDateTime output = LocalDateTime.of(2021, Month.FEBRUARY, 22, 18, 30);
+        LocalDateTime fromDateTime = LocalDateTime.of(2021, Month.FEBRUARY, 22, 8, 0);
+        LocalDateTime toDateTime = LocalDateTime.of(2021,  Month.FEBRUARY, 25, 9, 15);
+
+        LocalDateTime tempDateTime = LocalDateTime.from( fromDateTime );
+
+        long years = tempDateTime.until( toDateTime, ChronoUnit.YEARS);
+        tempDateTime = tempDateTime.plusYears( years );
+
+        long months = tempDateTime.until( toDateTime, ChronoUnit.MONTHS);
+        tempDateTime = tempDateTime.plusMonths( months );
+
+        long days = tempDateTime.until( toDateTime, ChronoUnit.DAYS);
+        tempDateTime = tempDateTime.plusDays( days );
+
+
+        long hours = tempDateTime.until( toDateTime, ChronoUnit.HOURS);
+        tempDateTime = tempDateTime.plusHours( hours );
+
+        long minutes = tempDateTime.until( toDateTime, ChronoUnit.MINUTES);
+        tempDateTime = tempDateTime.plusMinutes( minutes );
+
+        long seconds = tempDateTime.until( toDateTime, ChronoUnit.SECONDS);
         
-        System.out.println("input: " + input);
-        System.out.println("hora: " + input.getHour());
-        System.out.println("minutos: " + input.getMinute());
+        
+        long minutes2 = ChronoUnit.MINUTES.between(fromDateTime, toDateTime);
+        System.out.println("minutos: " + minutes2);
+        
+        System.out.println( years + " years " + 
+        months + " months " + 
+        days + " days " +
+        hours + " hours " +
+        minutes + " minutes " +
+        seconds + " seconds.");
+
+//prints: 29 years 8 months 24 days 22 hours 54 minutes 50 seconds.
+        
+        
+        
+//        LocalDateTime input = LocalDateTime.of(2021, Month.FEBRUARY, 22, 17, 0);   
+//        
+//        LocalDateTime output = LocalDateTime.of(2021, Month.FEBRUARY, 22, 18, 30);
+//        
+//        System.out.println("input: " + input);
+//        System.out.println("hora: " + input.getHour());
+//        System.out.println("minutos: " + input.getMinute());
         //System.out.println("float: " + input.getLong());
         
     }
