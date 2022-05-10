@@ -5,8 +5,13 @@
  */
 package unicauca.parkinglot.domain.service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import unicauca.parkinglot.access.IVehicleRepository;
+import unicauca.parkinglot.access.RepositoryFactory;
+import unicauca.parkinglot.access.VehicleRepository;
+import unicauca.parkinglot.domain.IParkingCost;
 import unicauca.parkinglot.domain.Vehicle;
 
 /**
@@ -19,19 +24,56 @@ public class Service {
      */
     IVehicleRepository repository;
     
-    public Service(){
-        
+    public Service(IVehicleRepository repository){
+        this.repository = repository;
     }
+    /**
+     * Calcular costo de entrega
+     * @param order orden sobre la cual se calcula el costo de entrega
+     * @return costo de entrega
+     *
+    public double calculateDeliveryCost(Order order) {
+
+        if (order == null) {
+            return -1;
+        }
+        // La fábrica devuelve una instancia de la jerarquia IDelivery  
+        IDelivery delivery = Factory.getInstance().getDelivery(order.getCountry());
+        double result = delivery.calculateCost(order);
+
+        return result;
+    }
+     */
     
-    public void calcularParkingCost(){
+    /**
+     * 
+     * @param vehicle
+     * @param input
+     * @param output
+     * @return 
+     */
+    public long calcularParkingCost(Vehicle vehicle, LocalDateTime input, LocalDateTime output){
+        System.out.println("vehicle: "+ vehicle.getType());
+        if(vehicle == null){
+            return -1;
+        }
+        IParkingCost parkingCost = RepositoryFactory.getInstance().getParkingCost(vehicle.getType());
+        System.out.println("resultado : "+ parkingCost);
+        long result = parkingCost.calculateCost(input, output);
+        System.out.println("result: "+ result);
+        
+        return result;
+    }
+    public void saveVehicle(Vehicle vehicle){
+        
+        if(vehicle != null){
+            repository.saveProduct(vehicle);
+        }
         
     }
-    public void saveVehicle(){
+    public List<Vehicle> lstVehicles(){
         
-    }
-    public ArrayList<Vehicle> lstVehicles(){
-        
-        return null;
+        return repository.listVehicles();
         
     }
 }

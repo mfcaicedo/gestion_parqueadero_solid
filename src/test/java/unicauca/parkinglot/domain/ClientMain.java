@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package unicauca.parkinglot.presentation;
+package unicauca.parkinglot.domain;
 
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -26,17 +26,8 @@ public class ClientMain {
     public static void main(String[] args) {
         // TODO code application logic here
         
-//       ParkingTest test = new ParkingTest(); 
-
-        double valor = 4750;
-        Math.ceil(valor);
-        System.out.println("aproximacion: "+ ((long)Math.ceil(valor/100))*100);
-
-        double numero = 0;
-        double n = 4; 
-        double n1 = 5; 
-        numero = n/n1;
-        System.out.println("numero: "+ numero);
+       ParkingTest test = new ParkingTest(); 
+       test.MotosTest();
         
         
     }

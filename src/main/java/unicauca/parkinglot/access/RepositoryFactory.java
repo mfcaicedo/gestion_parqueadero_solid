@@ -59,4 +59,13 @@ public class RepositoryFactory {
         return result;
 
     }
+
+    public VehicleRepository getRepository(String adefault){
+        if(adefault.equals("default")){
+            
+           VehicleRepository respository = new VehicleRepository(); 
+            return respository;
+        }
+        return null; 
+    }
 }

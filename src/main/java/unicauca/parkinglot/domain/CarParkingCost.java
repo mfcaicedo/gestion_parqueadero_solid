@@ -25,9 +25,11 @@ public class CarParkingCost implements IParkingCost {
          */
 
         long totalMinutos = 0; 
+        double costo = 2000; 
         totalMinutos = ChronoUnit.MINUTES.between(input, output);
         if(totalMinutos >= 60){
-            return (2000 + ((2000)/(60)) * totalMinutos);
+            double totalPago = Math.ceil((2000 + ((costo)/(60)) * totalMinutos)/100) * 100;
+            return (long)totalPago;
         }else{
             return 2000;
         }

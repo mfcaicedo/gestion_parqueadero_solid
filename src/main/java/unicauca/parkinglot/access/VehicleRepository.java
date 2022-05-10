@@ -21,7 +21,7 @@ import unicauca.parkinglot.domain.service.Service;
 public class VehicleRepository implements IVehicleRepository {
     private Connection conn;
 
-    public VehicleRepository() {
+    public VehicleRepository(){
         initDatabase();
     }
 
@@ -81,15 +81,16 @@ public class VehicleRepository implements IVehicleRepository {
         return vehicles;
     }
 
-    private void initDatabase() {
+    private void initDatabase(){
         // SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS Vehicle (\n"
                 + "	veh_placa varchar PRIMARY KEY,\n"
-                + "	vhe_tipo varchar NOT NULL,\n"
+                + "	vhe_tipo varchar NOT NULL\n"
                 + ");";
 
         try {
             this.connect();
+//            Class.forName("org.sqlite.JDBC");
             Statement stmt = conn.createStatement();
             stmt.execute(sql);
             //this.disconnect();
@@ -99,8 +100,9 @@ public class VehicleRepository implements IVehicleRepository {
         }
     }
 
-    public void connect() {
+    public void connect(){
         // Si se quiere guardar los datos a un archivo
+        
         String url = "jdbc:sqlite:./mydatabase.db";
         
         // Guarda los datos en memoria RAM
@@ -108,10 +110,13 @@ public class VehicleRepository implements IVehicleRepository {
         //String url = "jdbc:sqlite::memory:";
 
         try {
+//            Class.forName("org.sqlite.JDBC");
+//            conn = DriverManager.getConnection("jdbc:sqlite" + url);
             conn = DriverManager.getConnection(url);
 
         } catch (SQLException ex) {
-            Logger.getLogger(Service.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error: " + Service.class.getName());
+//            Logger.getLogger(Service.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
