@@ -5,7 +5,7 @@ import java.time.temporal.ChronoUnit;
 
 /**
  *
- * @author HP
+ * @author Milthon F Caicedo 
  */
 public class TruckParkingCost implements IParkingCost {
 
@@ -25,45 +25,11 @@ public class TruckParkingCost implements IParkingCost {
             return 10000;
         }else if (totalMinutos > 720 && totalMinutos <= 1440){
             return 15000;
-        }else{ //caso de estar más de 24 horas 
+        }else{ // > 24 horas 
+            System.out.println("total minutos: "+totalMinutos);
             double totalPago = Math.ceil(((costo/1440) * totalMinutos)/100) * 100;
             return (long)totalPago;
         }
-        
-        
-//        LocalDateTime tempDateTime = LocalDateTime.from( input );
-//
-//        long dias = tempDateTime.until( output, ChronoUnit.DAYS);
-//        tempDateTime = tempDateTime.plusDays( dias );
-//
-//        long horas = tempDateTime.until( output, ChronoUnit.HOURS);
-//        tempDateTime = tempDateTime.plusHours( horas );
-//
-//        long minutos = tempDateTime.until( output, ChronoUnit.MINUTES);
-//        tempDateTime = tempDateTime.plusMinutes( minutos );
-//
-//        long totalMinutos = 0; 
-        
-
-//        if(dias > 0){
-//           totalMinutos = (dias*24) * 60;
-//           if (horas >0)
-//               totalMinutos += horas*60;
-//           if(minutos > 0 )
-//               totalMinutos += minutos;
-//            return (2000 + ((2000)/(60)) * totalMinutos);
-//        
-//        }else if (horas > 0 ){
-//           totalMinutos += horas*60;
-//           if(minutos > 0 )
-//                totalMinutos += minutos;
-//            return (2000 + ((2000)/(60)) * totalMinutos);
-//        
-//        }else if(minutos > 0){
-//            return 2000;
-//        }
-//        
-//        return 0;
     }
     
 }

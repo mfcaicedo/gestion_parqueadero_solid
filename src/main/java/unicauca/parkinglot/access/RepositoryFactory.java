@@ -14,56 +14,30 @@ import unicauca.parkinglot.domain.TypeEnum;
  */
 public class RepositoryFactory {
    private Map<TypeEnum, IParkingCost> vehicleDictionary;
-
     // Singleton
     private static RepositoryFactory instance;
-
     private RepositoryFactory() {
-        vehicleDictionary = new EnumMap<>(TypeEnum.class);
-        vehicleDictionary.put(TypeEnum.CARRO, new CarParkingCost());
-        vehicleDictionary.put(TypeEnum.CAMION, new TruckParkingCost());
-        vehicleDictionary.put(TypeEnum.MOTO, new MotoParkingCost());
-        // Si se requie otto tipo de vehículo, se abre un registro en este diccionario
-        // No se viola el principio porque este este modulo no está pensado
-        // para que sea estable.
+        
     }
-
     /**
      * Devuelve la instancia de la clase
-     *
      * @return instancia unica de la la fábrica de repositorio 
      */
-
     public static RepositoryFactory getInstance() {
         if (instance == null) {
             instance = new RepositoryFactory();
         }
         return instance;
     }
-
     /**
-     * Para un determinado tipo de vehículo determina la clase que se encarga de calcular el costo del
-     * por el uso del parqueadero.
-     *
+     * Retorna el respositorio del vehículo de la fabrica. 
      * @param tipo
-     * @return IParkinCost
+     * @return IVehicleRepository
      */
-    public IParkingCost getParkingCost(TypeEnum tipo) {
-
-        IParkingCost result = null;
-
-        if (vehicleDictionary.containsKey(tipo)) {
-            result = vehicleDictionary.get(tipo);
-        }
-
-        return result;
-
-    }
-
-    public VehicleRepository getRepository(String adefault){
-        if(adefault.equals("default")){
+    public IVehicleRepository getRepository(String tipo){
+        if(tipo.equals("default")){
             
-           VehicleRepository respository = new VehicleRepository(); 
+           IVehicleRepository respository = new VehicleRepository(); 
             return respository;
         }
         return null; 

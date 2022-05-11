@@ -14,6 +14,12 @@ import java.time.temporal.ChronoUnit;
  */
 public class MotoParkingCost implements IParkingCost {
 
+    /**
+     * 
+     * @param input
+     * @param output
+     * @return 
+     */
     @Override
     public long calculateCost(LocalDateTime input, LocalDateTime output) {
  

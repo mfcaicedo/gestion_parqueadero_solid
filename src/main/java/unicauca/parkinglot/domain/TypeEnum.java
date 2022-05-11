@@ -7,10 +7,10 @@ package unicauca.parkinglot.domain;
 
 /**
  *
- * @author HP
+ * @author Milthon F Caicedo 
  */
 public enum TypeEnum {
-    MOTO, CARRO, CAMION 
+    MOTO, CAR, TRUCK 
      
 }
 

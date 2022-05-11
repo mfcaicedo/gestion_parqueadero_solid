@@ -84,8 +84,9 @@ public class VehicleRepository implements IVehicleRepository {
     private void initDatabase(){
         // SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS Vehicle (\n"
-                + "	veh_placa varchar PRIMARY KEY,\n"
-                + "	vhe_tipo varchar NOT NULL\n"
+                + "	veh_id integer PRIMARY KEY autoincrement,\n"
+                + "     veh_placa varchar,\n"
+                + "	veh_tipo varchar NOT NULL\n"
                 + ");";
 
         try {
