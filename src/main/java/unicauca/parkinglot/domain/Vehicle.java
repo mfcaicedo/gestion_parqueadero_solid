@@ -6,8 +6,8 @@ package unicauca.parkinglot.domain;
  */
 public class Vehicle {
     
-   /*
-    Atributos 
+   /**
+    *Atributos 
     */
     private String placa; 
     private TypeEnum type;

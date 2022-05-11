@@ -18,7 +18,6 @@ import unicauca.parkinglot.domain.Vehicle;
 import unicauca.parkinglot.domain.service.Service;
 
 
-
 /**
  *
  * @author Milthon F Caicedo, Brandon Nicolas Bohórquez
@@ -45,7 +44,7 @@ public class ClientMain {
         System.out.println("Vehicle{ Placa: " + vehicle.getPlaca() + "," + "Tipo: " + vehicle.getType() + "}");
         });
         
-        //Duda mañana 
+        //Pruebas 
        //ParkingTest test = new ParkingTest(); 
     }
     

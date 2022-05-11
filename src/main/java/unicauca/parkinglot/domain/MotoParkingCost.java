@@ -22,13 +22,16 @@ public class MotoParkingCost implements IParkingCost {
      */
     @Override
     public long calculateCost(LocalDateTime input, LocalDateTime output) {
- 
         /**
-         * 2mil -> 60 minutos = 1 hora 
-         * mil -> minutos menor a 60  es decir 1 hora 
-         * mas de una hora se le cobra mil pesos. 
-         */
-        
+        * Calcula el costo por el uso del parqueadero del vehículo tipo MOTO. 
+        * @literal 
+        * 2mil -> 60 minutos = 1 hora 
+        * mil -> minutos menor a 60  es decir 1 hora 
+        * mas de una hora se le cobra mil pesos. 
+        * @param input fecha de entrada del vehículo 
+        * @param output fecha de salida del vehículo 
+        * @return costo total a pagar por el uso del parqueadero. 
+        */
         double costo = 1000; 
         long totalMinutos = 0; 
         totalMinutos = ChronoUnit.MINUTES.between(input, output);

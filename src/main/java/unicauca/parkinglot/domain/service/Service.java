@@ -19,13 +19,12 @@ public class Service {
      * Atributos 
      */
     IVehicleRepository repository;
-    
     public Service(IVehicleRepository repository){
         this.repository = repository;
     }
-    
     /**
-     * 
+     * Según el tipo de vehículo llama a su respectiva clase para que calcule el costo 
+     * por el uso del parqueadero. 
      * @param vehicle es el objeto de vehículo.
      * @param input fecha de entrada 
      * @param output fecha de salida
@@ -40,15 +39,13 @@ public class Service {
         return result;
     }
     public void saveVehicle(Vehicle vehicle){
-        
         if(vehicle != null){
             repository.saveProduct(vehicle);
         }
-        
     }
     /**
-     * 
-     * @return 
+     * Lista de vehículos del parqueadero público 
+     * @return lista de vehículos
      */
     public List<Vehicle> listVehicles(){
         return repository.listVehicles();

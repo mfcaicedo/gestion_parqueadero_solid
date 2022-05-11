@@ -9,7 +9,7 @@ import unicauca.parkinglot.access.RepositoryFactory;
  */
 public class ParkingCostFactory {
     private Map<TypeEnum, IParkingCost> dictionary;
-    // Singleton
+    //Singleton
     private static ParkingCostFactory instance;
     private ParkingCostFactory(){
         dictionary = new EnumMap<>(TypeEnum.class);
@@ -18,10 +18,6 @@ public class ParkingCostFactory {
         dictionary.put(TypeEnum.MOTO, new MotoParkingCost());
     }
     
-    //Pregunta para mañana 
-    private static void VehicleFactory(){
-       
-    }
     /**
     * Devuelve la instancia de la clase
     * @return instancia unica del ParkingCostFactory 

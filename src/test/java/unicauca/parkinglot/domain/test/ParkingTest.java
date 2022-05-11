@@ -1,5 +1,5 @@
 
-package unicauca.parkinglot.domain;
+package unicauca.parkinglot.domain.test;
 
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -8,6 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import unicauca.parkinglot.access.IVehicleRepository;
 import unicauca.parkinglot.access.RepositoryFactory;
+import unicauca.parkinglot.domain.TypeEnum;
+import unicauca.parkinglot.domain.Vehicle;
 import unicauca.parkinglot.domain.service.Service;
 
 /**
