@@ -8,9 +8,14 @@ package unicauca.parkinglot.presentation;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-
+import unicauca.parkinglot.access.IVehicleRepository;
+import unicauca.parkinglot.access.RepositoryFactory;
+import unicauca.parkinglot.domain.TypeEnum;
+import unicauca.parkinglot.domain.Vehicle;
+import unicauca.parkinglot.domain.service.Service;
 
 
 /**
@@ -24,46 +29,20 @@ public class ClientMain {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
-        /**
-         * Pruebas
-         * 
-         */
-        
-        LocalDateTime fromDateTime = LocalDateTime.of(2021, Month.FEBRUARY, 22, 8, 0);
-        LocalDateTime toDateTime = LocalDateTime.of(2021,  Month.FEBRUARY, 25, 9, 15);
-
-        LocalDateTime tempDateTime = LocalDateTime.from( fromDateTime );
-
-        long years = tempDateTime.until( toDateTime, ChronoUnit.YEARS);
-        tempDateTime = tempDateTime.plusYears( years );
-
-        long months = tempDateTime.until( toDateTime, ChronoUnit.MONTHS);
-        tempDateTime = tempDateTime.plusMonths( months );
-
-        long days = tempDateTime.until( toDateTime, ChronoUnit.DAYS);
-        tempDateTime = tempDateTime.plusDays( days );
-
-
-        long hours = tempDateTime.until( toDateTime, ChronoUnit.HOURS);
-        tempDateTime = tempDateTime.plusHours( hours );
-
-        long minutes = tempDateTime.until( toDateTime, ChronoUnit.MINUTES);
-        tempDateTime = tempDateTime.plusMinutes( minutes );
-
-        long seconds = tempDateTime.until( toDateTime, ChronoUnit.SECONDS);
-        
-        
-        long minutes2 = ChronoUnit.MINUTES.between(fromDateTime, toDateTime);
-        System.out.println("minutos: " + minutes2);
-        
-        System.out.println( years + " years " + 
-        months + " months " + 
-        days + " days " +
-        hours + " hours " +
-        minutes + " minutes " +
-        seconds + " seconds.");
-
+        Vehicle veh = new Vehicle("FTK-123", TypeEnum.MOTO);
+        LocalDateTime input = LocalDateTime.of(2021, Month.FEBRUARY, 22, 8, 0);
+        LocalDateTime output = LocalDateTime.of(2021, Month.FEBRUARY, 22, 19, 30);
+        IVehicleRepository repo = RepositoryFactory.getInstance().getRepository("default");
+        Service service = new Service(repo); //Inyección de dependencias
+        long result = service.calcularParkingCost(veh, input, output);
+        System.out.println("Valor a pagar por la moto: " + result);
+        service.saveVehicle(veh);
+        veh = new Vehicle("JNK-124", TypeEnum.CAR);
+        service.saveVehicle(veh);
+        List<Vehicle> list = service.listVehicles();
+        list.forEach(vehicle -> {
+        System.out.println("Vehicle{ Placa: " + vehicle.getPlaca() + "," + "Tipo: " + vehicle.getType() + "}");
+        }); 
     }
     
 }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package unicauca.parkinglot.domain;
 
 /**
@@ -11,8 +6,8 @@ package unicauca.parkinglot.domain;
  */
 public class Vehicle {
     
-   /*
-    Atributos 
+   /**
+    *Atributos 
     */
     private String placa; 
     private TypeEnum type;

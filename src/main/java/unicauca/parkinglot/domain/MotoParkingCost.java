@@ -6,16 +6,43 @@
 package unicauca.parkinglot.domain;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 /**
  *
- * @author HP
+ * @author Milthon F Caicedo 
  */
 public class MotoParkingCost implements IParkingCost {
 
+    /**
+     * 
+     * @param input
+     * @param output
+     * @return 
+     */
     @Override
     public long calculateCost(LocalDateTime input, LocalDateTime output) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        /**
+        * Calcula el costo por el uso del parqueadero del vehículo tipo MOTO. 
+        * @literal 
+        * 2mil -> 60 minutos = 1 hora 
+        * mil -> minutos menor a 60  es decir 1 hora 
+        * mas de una hora se le cobra mil pesos. 
+        * @param input fecha de entrada del vehículo 
+        * @param output fecha de salida del vehículo 
+        * @return costo total a pagar por el uso del parqueadero. 
+        */
+        double costo = 1000; 
+        long totalMinutos = 0; 
+        totalMinutos = ChronoUnit.MINUTES.between(input, output);
+        if(totalMinutos < 60){
+            return 1000;
+        }else{
+            double total = (Math.ceil(( 1000 + (costo)/(60) * totalMinutos )/(100))) * 100;
+            return (long)total; 
+        }
+        
+        
     }
-    
+     
 }

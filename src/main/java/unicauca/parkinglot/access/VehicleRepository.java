@@ -21,10 +21,16 @@ import unicauca.parkinglot.domain.service.Service;
 public class VehicleRepository implements IVehicleRepository {
     private Connection conn;
 
-    public VehicleRepository() {
+    public VehicleRepository(){
         initDatabase();
     }
 
+    /**
+     * Guarda en la base de datos el vehículo
+     * @param newVehicle
+     * @return retorna un true si el guardado fue exitoso y un false en caso de tener error
+     */
+    
     @Override
     public boolean saveProduct(Vehicle newVehicle) {
 
@@ -53,6 +59,11 @@ public class VehicleRepository implements IVehicleRepository {
         return false;
     }
 
+    /**
+     * Hace la consulta en la base de datos de los vehículos guardados
+     * @return  lista de los vehículos
+     */
+    
     @Override
     public List<Vehicle> listVehicles() {
         List<Vehicle> vehicles = new ArrayList<>();
@@ -81,15 +92,21 @@ public class VehicleRepository implements IVehicleRepository {
         return vehicles;
     }
 
-    private void initDatabase() {
+    /**
+     * Inicializa la base de datos y crea las tablas correspondientes
+     */
+    
+    private void initDatabase(){
         // SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS Vehicle (\n"
-                + "	veh_placa varchar PRIMARY KEY,\n"
-                + "	vhe_tipo varchar NOT NULL,\n"
+                + "	veh_id integer PRIMARY KEY autoincrement,\n"
+                + "     veh_placa varchar,\n"
+                + "	veh_tipo varchar NOT NULL\n"
                 + ");";
 
         try {
             this.connect();
+//            Class.forName("org.sqlite.JDBC");
             Statement stmt = conn.createStatement();
             stmt.execute(sql);
             //this.disconnect();
@@ -98,23 +115,23 @@ public class VehicleRepository implements IVehicleRepository {
             Logger.getLogger(Service.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    public void connect() {
-        // Si se quiere guardar los datos a un archivo
+    
+    /**
+     * Conecta la base de datos. 
+     */
+    public void connect(){
         String url = "jdbc:sqlite:./mydatabase.db";
-        
-        // Guarda los datos en memoria RAM
-        
-        //String url = "jdbc:sqlite::memory:";
-
         try {
             conn = DriverManager.getConnection(url);
 
         } catch (SQLException ex) {
-            Logger.getLogger(Service.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error: " + Service.class.getName());
         }
     }
-
+    
+    /**
+     * Desconecta la base datos 
+     */
     public void disconnect() {
         try {
             if (conn != null) {
@@ -123,6 +140,5 @@ public class VehicleRepository implements IVehicleRepository {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-
     }
 }
