@@ -64,19 +64,6 @@ public class ClientMain {
         minutes + " minutes " +
         seconds + " seconds.");
 
-//prints: 29 years 8 months 24 days 22 hours 54 minutes 50 seconds.
-        
-        
-        
-//        LocalDateTime input = LocalDateTime.of(2021, Month.FEBRUARY, 22, 17, 0);   
-//        
-//        LocalDateTime output = LocalDateTime.of(2021, Month.FEBRUARY, 22, 18, 30);
-//        
-//        System.out.println("input: " + input);
-//        System.out.println("hora: " + input.getHour());
-//        System.out.println("minutos: " + input.getMinute());
-        //System.out.println("float: " + input.getLong());
-        
     }
     
 }
